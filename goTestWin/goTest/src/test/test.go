@@ -17,6 +17,7 @@ import (
 	"reflect"
 	"sort"
 	"bufio"
+	"flag"
 )
 
 //type float float64
@@ -893,12 +894,63 @@ func t_io_input() {
 	}
 }
 
+type Person struct {
+	Name 	string
+	Age 	int
+}
+
+//type
+
+func t_person() {
+	//Person per1 //#ERROR# unexpected per1 at end of statement
+	var per1 Person
+	per1.Name = "aaa"
+	per1.Age = 30
+	fmt.Printf("Name=%s, Age=%d \n", per1.Name, per1.Age)
+	
+	per2 :=  Person {"bbb", 32}
+	fmt.Printf("Name=%s, Age=%d \n", per2.Name, per2.Age)
+	
+	//per3 := new Person{"bbb", 32}
+}
+
+func t_flag() {
+	name := "NNNN"
+	//flag.StringVar(&name, "name NNName", "value everyone", "useage xxx")
+	pName := flag.String("name NNName", "value everyone", "useage xxx")
+	flag.Parse()
+	fmt.Printf("*pName=%v \n", *pName)
+	
+	//fmt.Printf("flag=%v \n", flag) //use of package flag without selector
+	//fmt.Printf("name=%v \n", name)
+	//fmt.Printf("useage=%v \n", flag.Usage)
+	
+	fmt.Printf("name=%v \n", name)
+	{
+		var name = "aaa" //name redeclared in this block
+		fmt.Printf("in {} name=%v \n", name)
+	}
+	fmt.Printf("name=%v \n", name)
+}
+
+func t_getTheFlag() *string {
+	return flag.String("name", "everybody", "The greeting object.")
+}
+
+func t_flag2() {
+	var get_flag = t_getTheFlag()
+	flag.Parse()
+	fmt.Printf("Hello, %v \n", *get_flag)
+}
 
 func test_2() {
 	//t_memstatus()
 	//t_error_exit()
 	//t_file_open()
-	t_io_input()
+	//t_io_input()
+	//t_person()
+	//t_flag()
+	t_flag2()
 }
 
 func main() {
