@@ -12,8 +12,10 @@ func main() {
 	var count int = 0
 	
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintf(w, "hello world")
-			fmt.Println(count)
+			fmt.Fprintf(w, "hello world, count=%d \n", count)
+			//fmt.Println(count)
+			fmt.Printf("count=%d, url=%s \n", count, r.URL.Path)
+			fmt.Printf("count=%d, RequestURI=%s \n", count, r.URL.RequestURI())
 			count++;
 	})
 	

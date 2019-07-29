@@ -16,9 +16,11 @@ func show_arry(arry []int, size int) {
 func test() {
 	//var arry1[3] int {1,3,8} //error
 	var arry1 = []int{1,3,8}
+	/*
 	for i:=0; i<3; i++ {
 		fmt.Printf("%d, %d\n", i, arry1[i]);
 	}
+	*/
 	
 	//test show_arry
 	show_arry(arry1, 3)
