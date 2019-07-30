@@ -5,17 +5,22 @@ import (
 	"sync"
 )
 
+// package search 包级别变量， map[string] Matcher 映射, string -> Matcher（接口）
+// 变量名：matchers， 小写
 // A map of registered matchers for searching.
 var matchers = make(map[string]Matcher)
 
+// 执行搜索逻辑
 // Run performs the search logic.
 func Run(searchTerm string) {
+    // 获取需要搜索的数据源列表
 	// Retrieve the list of feeds to search through.
 	feeds, err := RetrieveFeeds()
 	if err != nil {
 		log.Fatal(err)
 	}
 
+    // 创建一个无缓冲的通道，接收匹配后的结果，用于显示
 	// Create an unbuffered channel to receive match results to display.
 	results := make(chan *Result)
 
