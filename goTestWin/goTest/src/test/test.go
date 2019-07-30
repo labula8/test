@@ -943,6 +943,17 @@ func t_flag2() {
 	fmt.Printf("Hello, %v \n", *get_flag)
 }
 
+func t_runtime_numcpu() {
+	num_cpu := runtime.NumCPU()
+	// 给每个可用的核心分配一个逻辑处理器
+	//runtime.GOMAXPROCS(runtime.NumCPU())
+	//runtime.GOMAXPROCS(2)
+	new_num_cpu := runtime.GOMAXPROCS(1)
+	
+	fmt.Printf("num_cpu=%v \n", num_cpu)
+	fmt.Printf("new_num_cpu=%v \n", new_num_cpu)
+}
+
 func test_2() {
 	//t_memstatus()
 	//t_error_exit()
@@ -950,7 +961,8 @@ func test_2() {
 	//t_io_input()
 	//t_person()
 	//t_flag()
-	t_flag2()
+	//t_flag2()
+	t_runtime_numcpu()
 }
 
 func main() {
