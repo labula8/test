@@ -954,6 +954,38 @@ func t_runtime_numcpu() {
 	fmt.Printf("new_num_cpu=%v \n", new_num_cpu)
 }
 
+// 返回值，可有括号，可没有
+func t_fun_2(in int) int {
+//func t_fun_2(in int) (int) {
+	fmt.Printf("func t_fun_2(in int) (int)  \n")
+	fmt.Printf("You input in=%d \n", in)
+	ret := 888
+	fmt.Printf("The output ret=%d \n", ret)
+	return ret
+}
+
+// 函数返回值，提前声明好
+func t_fun_3(in int) (ret int) {
+	fmt.Printf("func t_fun_3(in int) (int)  \n")
+	fmt.Printf("You input in=%d \n", in)
+	//ret := 888 //no new variables on left side of :=
+	ret = 999
+	fmt.Printf("The output ret=%d \n", ret)
+	return ret
+}
+
+// 多返回值，必须有括号
+//func t_fun_4(in int) int, int { //unexpected comma after top level declaration
+func t_fun_4(in int) (int, int) {
+	fmt.Printf("func t_fun_4(in int) (int, int)  \n")
+	fmt.Printf("You input in=%d \n", in)
+	ret1 := 888
+	fmt.Printf("The output ret1=%d \n", ret1)
+	ret2 := 999
+	fmt.Printf("The output ret2=%d \n", ret2)
+	return ret1, ret2
+}
+
 func test_2() {
 	//t_memstatus()
 	//t_error_exit()
@@ -962,7 +994,10 @@ func test_2() {
 	//t_person()
 	//t_flag()
 	//t_flag2()
-	t_runtime_numcpu()
+	//t_runtime_numcpu()
+	//t_fun_2(3)
+	//t_fun_3(3)
+	t_fun_4(3)
 }
 
 func main() {
